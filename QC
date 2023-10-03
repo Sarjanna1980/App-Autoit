@@ -3,6 +3,10 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
 #include <WindowsConstants.au3>
+#include <FileConstants.au3>
+#include <ButtonConstants.au3>
+#include <WindowsConstants.au3>
+
 
 Local $var = "C:\Users\Sahar\Desktop\test_sar\Autoit\QC_FormTest.xlsx"
 Local $oExcel_1 = _Excel_Open()
@@ -23,12 +27,8 @@ Local $currentSecond = @SEC
 Local $dateString = StringFormat("%02d%02d%02d", $currentDay,$currentMonth,$currentYear)
 Local $timeString = StringFormat("%02d%02d%02d", $currentHour, $currentMinute, $currentSecond)
 Local $newFileName= $dateString & "_" & $timeString
+Local $newFolderName= $dateString & "_" & $timeString
 
-
-#include <ButtonConstants.au3>
-#include <GUIConstantsEx.au3>
-#include <StaticConstants.au3>
-#include <WindowsConstants.au3>
 
 #Region ### START Koda GUI section ### Form=
 $Form1 = GUICreate("Form1", 1269, 628, 192, 124)
@@ -48,7 +48,7 @@ GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
 
 
-$Label5 = GUICtrlCreateLabel("CATV2",250, 96, 50, 17)
+$Label5 = GUICtrlCreateLabel("Panel",250, 96, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -56,7 +56,7 @@ Global $Input1 = GUICtrlCreateInput("", 300, 96, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Label6 = GUICtrlCreateLabel("Panel",250, 128, 50, 17)
+$Label6 = GUICtrlCreateLabel("Combox",250, 128, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -64,7 +64,7 @@ Global $Input2 = GUICtrlCreateInput("", 300, 128, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Label7 = GUICtrlCreateLabel("CATV3",250, 160, 50, 17)
+$Label7 = GUICtrlCreateLabel("PC",250, 160, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -72,7 +72,7 @@ Global $Input3 = GUICtrlCreateInput("", 300, 160, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Label8 = GUICtrlCreateLabel("XRDE2",400, 96, 50, 17)
+$Label8 = GUICtrlCreateLabel("CATV2",400, 96, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -80,7 +80,7 @@ Global $Input6 = GUICtrlCreateInput("", 450, 96, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Label9 = GUICtrlCreateLabel("MiniCAT",400, 128, 50, 17)
+$Label9 = GUICtrlCreateLabel("XRDEV2",400, 128, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -88,7 +88,7 @@ Global $Input7 = GUICtrlCreateInput("", 450, 128, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe20 = GUICtrlCreateLabel("Repeater",400, 160, 50, 17)
+$Labe20 = GUICtrlCreateLabel("CATV3",400, 160, 50, 17)
 GUICtrlSetFont(-1, 6, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
@@ -96,57 +96,73 @@ Global $Input8 = GUICtrlCreateInput("", 450, 160, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe21 = GUICtrlCreateLabel("FLATCAT",600, 96, 50, 17)
+$Labe21 = GUICtrlCreateLabel("FLATCAT",550, 96, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input9 = GUICtrlCreateInput("", 650, 96, 90, 17)
+Global $Input9 = GUICtrlCreateInput("", 600, 96, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe22 = GUICtrlCreateLabel("HAWK",600, 128, 50, 17)
+$Labe22 = GUICtrlCreateLabel("HAWK",550, 128, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input10 = GUICtrlCreateInput("", 650, 128, 90, 17)
+Global $Input10 = GUICtrlCreateInput("", 600, 128, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe23 = GUICtrlCreateLabel("Smart",600, 160, 50, 17)
+$Labe23 = GUICtrlCreateLabel("Smart",550, 160, 50, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input11 = GUICtrlCreateInput("", 650, 160, 90, 17)
+Global $Input11 = GUICtrlCreateInput("", 600, 160, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe24 = GUICtrlCreateLabel("X-TEAM",750, 96, 50, 17)
+$Labe24 = GUICtrlCreateLabel("X-TEAM",700, 96, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input12 = GUICtrlCreateInput("", 800, 96, 90, 17)
+Global $Input12 = GUICtrlCreateInput("", 750, 96, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe25 = GUICtrlCreateLabel("H.P.",750, 128, 50, 17)
+$Labe25 = GUICtrlCreateLabel("H.P.",700, 128, 50, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input13 = GUICtrlCreateInput("", 800, 128, 90, 17)
+Global $Input13 = GUICtrlCreateInput("", 750, 128, 90, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
 
-$Labe26 = GUICtrlCreateLabel("Tactical\",750, 160, 60, 17)
+$Labe26 = GUICtrlCreateLabel("Tactical\",700, 160, 60, 17)
 GUICtrlSetFont(-1, 6, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
-Global $Input14 = GUICtrlCreateInput("", 810, 160, 90, 34)
+Global $Input14 = GUICtrlCreateInput("", 750, 160, 90, 34)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
-$Labe26 = GUICtrlCreateLabel("Integrated",750, 177, 60, 17)
+$Labe26 = GUICtrlCreateLabel("Integrated",700, 177, 60, 17)
 GUICtrlSetFont(-1, 5, 800, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
 GUICtrlSetBkColor(-1, 0x000080)
+
+$Labe27 = GUICtrlCreateLabel("MiniCAT",850, 96, 50, 17)
+GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
+GUICtrlSetColor(-1, 0xFF0000)
+GUICtrlSetBkColor(-1, 0x000080)
+Global $Input16 = GUICtrlCreateInput("", 900, 96, 90, 17)
+GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
+GUICtrlSetBkColor(-1, 0x00FF00)
+
+$Labe28 = GUICtrlCreateLabel("Repeater",850, 128, 50, 17)
+GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
+GUICtrlSetColor(-1, 0xFF0000)
+GUICtrlSetBkColor(-1, 0x000080)
+Global $Input17 = GUICtrlCreateInput("", 900, 128, 90, 17)
+GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
+GUICtrlSetBkColor(-1, 0x00FF00)
 
 
 
@@ -165,7 +181,7 @@ GUICtrlSetBkColor(-1, 0x00FF00)
 Global $Radio3 = GUICtrlCreateRadio("Name of the QC tester", 24, 160, 161, 17)
 GUICtrlSetFont(-1, 9, 800, 0, "MS Sans Serif")
 GUICtrlSetBkColor(-1, 0x00FF00)
-Global $Input3 = GUICtrlCreateInput("",25, 184, 121, 21)
+Global $Input15 = GUICtrlCreateInput("",25, 184, 121, 21)
 
 Global $Input4 = GUICtrlCreateInput("", 16, 40, 121, 21)
 Global $LABEL5 = GUICtrlCreateLabel("Order Number", 16, 8, 132, 24)
@@ -536,6 +552,7 @@ Global $Checkbox6208 = GUICtrlCreateCheckbox("6.20.8", 969, 431, 57, 17)
 GUICtrlSetFont(-1, 8, 800, 0, "MS Sans Serif")
 GUICtrlSetState(-1, $GUI_CHECKED)
 
+;Global $NameQC=GUICtrlRead($Input15)
 
 Global $Finish = GUICtrlCreateButton("Finish", 1150, 550, 97, 49)
 GUICtrlCreateGroup("", 1150, 550, 97, 49)
@@ -550,7 +567,7 @@ GUISetState(@SW_SHOW)
  _Excel_RangeWrite($oWorkbook, Default, "Procedure number" ,"D3")
  _Excel_RangeWrite($oWorkbook, Default, "OrderNumber" ,"D4")
  _Excel_RangeWrite($oWorkbook, Default, "System Components" ,"F1")
-  Global $NameQC=GUICtrlRead($Input3)
+
 
 
 Func opertion()
@@ -808,6 +825,7 @@ While 1
 		Case $GUI_EVENT_CLOSE
 			Exit
 		Case $Finish
+
 			$OrderNumber=GUICtrlRead($Input4)
 			$SurialNumber1=GUICtrlRead($Input1)
 			$SurialNumber2=GUICtrlRead($Input2)
@@ -821,7 +839,9 @@ While 1
 			$SurialNumber12=GUICtrlRead($Input12)
 			$SurialNumber13=GUICtrlRead($Input13)
 			$SurialNumber14=GUICtrlRead($Input14)
-			$NameQC=GUICtrlRead($Input3)
+			$SurialNumber16=GUICtrlRead($Input16)
+			$SurialNumber17=GUICtrlRead($Input17)
+			$NameQC=GUICtrlRead($Input15)
 		;Case $Button
 			;FileSaveDialog('Save File',@DesktopDir, 'Images (*.*)')
 
@@ -837,7 +857,13 @@ While 1
 			_Excel_RangeWrite($oWorkbook, Default, $SurialNumber12 ,"I2")
 			_Excel_RangeWrite($oWorkbook, Default, $SurialNumber13 ,"I3")
 			_Excel_RangeWrite($oWorkbook, Default, $SurialNumber14 ,"I4")
+			_Excel_RangeWrite($oWorkbook, Default, $SurialNumber16 ,"F5")
+			_Excel_RangeWrite($oWorkbook, Default, $SurialNumber17 ,"F6")
+
 			_Excel_RangeWrite($oWorkbook, Default, $OrderNumber ,"C4")
+
+
+
 			If GUICtrlRead ($Radio1) = 1 Then  _Excel_RangeWrite($oWorkbook, Default, "Diana Ben David" ,"C1")
             If GUICtrlRead ($Radio2) = 1 Then  _Excel_RangeWrite($oWorkbook, Default, "Carmit Hiresh" ,"C1")
 			If GUICtrlRead ($Radio3) = 1 Then  _Excel_RangeWrite($oWorkbook, Default, $NameQC ,"C1")
@@ -870,7 +896,13 @@ While 1
             If GUICtrlRead ($Checkbox619) = 4 Then  FLATCAT()
 			If GUICtrlRead ($Checkbox620) = 1 Then  _Excel_RangeWrite($oWorkbook, Default, "N\A" ,"B67:B74")
             If GUICtrlRead ($Checkbox620) = 4 Then  Tactical()
-			Local $sFilePath = "P:\!Test_QA\" & $OrderNumber & "_" & $newFileName &".xlsx"
+
+			;Local $folderPath = "P:\!Test_QA\"
+			;Local $folderName = $OrderNumber
+			;Local $fullFolderPath = $folderPath & $folderName
+			;DirCreate($fullFolderPath)
+
+			Local $sFilePath = "P:\!Test_QA\ " & $OrderNumber & "_" & $newFileName &".xlsx"
             $oWorkbook.SaveAs($sFilePath)
 			$oWorkbook.Close(False)
 			$oExcel_1.Quit()
